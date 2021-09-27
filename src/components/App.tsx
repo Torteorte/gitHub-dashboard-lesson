@@ -1,16 +1,17 @@
 import React from 'react';
-import "./App.css";
-import Header from "./Header/Header";
-// import AllRepositories from "./AllRepositoriesPage/AllRepositories";
-import RepositoryCard from "./RepositoryCard/RepositoryCard";
 
+import './App.css';
+
+import Header from './Header/Header';
+// import AllRepositories from "./AllRepositoriesPage/AllRepositories";
+import RepositoryCard from './RepositoryCard/RepositoryCard';
 
 const App: React.FC = () => {
   return (
     <div className="App">
-        <Header />
-        {/*<AllRepositories />*/}
-        <RepositoryCard />
+      <Header />
+      {/*<AllRepositories />*/}
+      <RepositoryCard />
     </div>
   );
 };

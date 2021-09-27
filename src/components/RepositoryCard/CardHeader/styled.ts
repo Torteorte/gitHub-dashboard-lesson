@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StyledHeader = styled.header`
   background-color: #f6f8fa;
@@ -12,9 +12,9 @@ export const StyledHeader = styled.header`
     color: #57606a;
     font-size: 14px;
   }
-  
+
   svg {
     margin: -3px 0;
     fill: dimgrey;
   }
-`
+`;

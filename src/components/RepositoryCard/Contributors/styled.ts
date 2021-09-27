@@ -1,64 +1,32 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const StyledMain = styled.main`
-  max-width: 750px;
-  margin: 70px auto;
-  border: 1px solid #d0d7de;
-  border-radius: 6px;
-  padding-bottom: 20px;
-  
-  h2 {
-    margin: 0;
-    padding: 16px;
-    font-size: 20px;
-    font-weight: 500;
-    text-align: left;
-    align-self: center;
-    color: #57606a;
-  }
-`;
-
-export const StyledLanguages = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center ;
-  margin: 0 25px;
-
-  h3 {
-    font-size: 18px;
-    font-weight: 500;
-  }
-  
-  ul {
-    display: flex;
-    flex-direction: row;
-    
-    li {
-      margin-left: 10px;
-    }
-  }
-`
 export const StyledContributors = styled.ul`
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr;
   flex-direction: row;
   margin: 10px 20px;
   align-items: center;
-  
+
   h3 {
     font-size: 16px;
     font-weight: 500;
+    width: 150px;
+    text-align: left;
+    margin-left: 5px;
   }
-  
+
   ul {
     display: flex;
     flex-direction: row;
-    
+    flex-wrap: wrap;
+
     li {
-      margin-left: 10px;
+      margin-top: 10px;
+      margin-left: 45px;
     }
   }
-  
-  img{
+
+  img {
     border-radius: 50%;
   }
-`
+`;
