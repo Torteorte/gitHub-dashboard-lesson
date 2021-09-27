@@ -2,16 +2,18 @@ import {
   SET_REPOSITORY_INFO,
   SET_REPOSITORY_COMMITS,
   SET_REPOSITORY_LANGUAGES,
-  SET_REPOSITORY_CONTRIBUTORS
+  SET_REPOSITORY_CONTRIBUTORS,
+  SET_LOADED
 } from './types';
 
 const initialState = {
-  userName: 'yangshun',
-  repositoryName: 'tech-interview-handbook',
+  userName: '996icu',
+  repositoryName: '996.ICU',
   repositoryInfo: {},
   repositoryCommits: {},
   repositoryLanguages: {},
-  repositoryContributors: null
+  repositoryContributors: {},
+  isLoaded: false
 };
 
 const userPageReducer = (state = initialState, action: any) => {
@@ -37,7 +39,14 @@ const userPageReducer = (state = initialState, action: any) => {
     case SET_REPOSITORY_CONTRIBUTORS:
       return {
         ...state,
-        repositoryContributors: action.payload
+        repositoryContributors: action.payload,
+        isLoaded: true
+      };
+
+    case SET_LOADED:
+      return {
+        ...state,
+        isLoaded: action.payload
       };
 
     default:

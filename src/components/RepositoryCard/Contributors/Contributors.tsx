@@ -5,16 +5,14 @@ import { useSelector } from 'react-redux';
 
 const Contributors: React.FC = () => {
   const {
-    userPageReducer: { repositoryContributors }
+    userPageReducer: { repositoryContributors, isLoaded }
   }: any = useSelector((store) => store);
 
   return (
     <StyledContributors>
       <h3>Main contributors:</h3>
       <ul>
-        {!repositoryContributors ? (
-          <li>no contributors</li>
-        ) : (
+        {isLoaded ? (
           repositoryContributors.map((obj: any) => (
             <li key={obj.id}>
               <a href={obj.html_url}>
@@ -22,6 +20,8 @@ const Contributors: React.FC = () => {
               </a>
             </li>
           ))
+        ) : (
+          <li>loading...</li>
         )}
       </ul>
     </StyledContributors>

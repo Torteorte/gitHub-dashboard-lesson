@@ -3,11 +3,13 @@ import {
   repositoryCommitsAC,
   repositoryContributorsAC,
   repositoryInfoAC,
-  repositoryLanguagesAC
+  repositoryLanguagesAC,
+  setLoaded
 } from './actions';
 
 export const setRepositoryThunk =
   (userName: string, repositoryName: string) => async (dispatch: any) => {
+    dispatch(setLoaded(false));
     const response = await axios.get(
       `https://api.github.com/repos/${userName}/${repositoryName}`
     );

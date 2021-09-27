@@ -5,12 +5,12 @@ import { useSelector } from 'react-redux';
 
 const CardHeader: React.FC = () => {
   const {
-    userPageReducer: { repositoryInfo, repositoryCommits }
+    userPageReducer: { repositoryInfo, repositoryCommits, isLoaded }
   }: any = useSelector((store) => store);
 
   return (
     <StyledHeader>
-      <h2>Repository: {repositoryInfo.name}</h2>
+      <h2>Repository: {repositoryInfo.name || 'loading...'} </h2>
       <div>
         <p>
           <svg
@@ -31,11 +31,11 @@ const CardHeader: React.FC = () => {
         </p>
         <p>
           last commit:{' '}
-          {!repositoryCommits[0]
-            ? ''
-            : repositoryCommits[0].commit.author.date
+          {isLoaded
+            ? repositoryCommits[0].commit.author.date
                 .toLocaleString()
-                .slice(0, 10)}
+                .slice(0, 10)
+            : 'Loading...'}
         </p>
       </div>
     </StyledHeader>

@@ -28,4 +28,5 @@ export const StyledParagraphUser = styled.p`
   margin-left: auto;
   margin-right: 20px;
   align-self: center;
+  text-align: left;
 `;
