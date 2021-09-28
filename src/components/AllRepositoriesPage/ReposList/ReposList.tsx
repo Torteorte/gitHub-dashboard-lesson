@@ -56,7 +56,12 @@ const ReposList: React.FC = () => {
                   </svg>{' '}
                   Stars {obj.stargazers_count}
                 </p>
-                <p>Last commit: {listLastCommits[index]}</p>
+                <p>
+                  Last commit:{' '}
+                  {listLastCommits.length !== 0
+                    ? listLastCommits[index]
+                    : 'loading...'}
+                </p>
               </div>
             </StyledList>
           ))

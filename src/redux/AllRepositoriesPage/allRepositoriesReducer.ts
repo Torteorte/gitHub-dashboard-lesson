@@ -27,7 +27,8 @@ const allRepositories = (state = initialState, action: any) => {
       localStorage.setItem('selectPage', action.payload);
       return {
         ...state,
-        pageSearch: localStorage.getItem('selectPage')
+        pageSearch: localStorage.getItem('selectPage'),
+        listLastCommits: []
       };
 
     case GET_NAME_SEARCH:
@@ -36,7 +37,8 @@ const allRepositories = (state = initialState, action: any) => {
       return {
         ...state,
         nameSearch: localStorage.getItem('selectName'),
-        pageSearch: '1'
+        pageSearch: '1',
+        listLastCommits: []
       };
 
     case SET_LOADED:

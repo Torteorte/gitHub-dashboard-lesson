@@ -30,8 +30,7 @@ const PaginationBlock: React.FC<props> = ({ changePage }) => {
     <StyledContainerPagination>
       <Pagination
         current={Number(pageSearch)}
-        // defaultCurrent={pageSearch}
-        total={!isLoaded ? 100 : totalCountNumber()}
+        total={!isLoaded ? 1 : totalCountNumber()}
         showSizeChanger={false}
         onChange={onChangePage}
       />

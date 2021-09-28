@@ -16,6 +16,7 @@ const SearchBlock: React.FC<props> = ({ handlerNameSearch }) => {
 
   const onNameSearch = (name: string) => {
     let result = `${name}+in:name`;
+    if (name === nameSearch.split('+')[0]) return;
     if (name === '') {
       result = 'stars';
     }
