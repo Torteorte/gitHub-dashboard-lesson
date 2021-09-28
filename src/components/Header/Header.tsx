@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { StyledHeader } from './styled';
 
 const Header: React.FC = () => {

@@ -9,7 +9,7 @@ export const StyledHeader = styled.header`
   box-shadow: 0 5px 10px 5px rgba(34, 60, 80, 0.2);
   h1 {
     font-size: 30px;
-    margin-left: 20px;
+    margin: 5px 0 5px 20px;
     text-align: left;
     color: slategrey;
   }
