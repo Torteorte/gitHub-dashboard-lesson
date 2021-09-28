@@ -3,18 +3,22 @@ import {
   GET_PAGE,
   SET_DEFAULT_REPOSITORIES,
   SET_LOADED,
-  SET_COMMITS_LIST
+  SET_FULL_NAMES,
+  SET_COMMITS_LIST,
+  SET_LOADED_COMMITS
 } from './types';
 
 const initialState = {
-  listRepositories: null,
+  listRepositories: [],
   pageSearch: localStorage.getItem('selectPage') || '1',
   nameSearch: localStorage.getItem('selectName') || 'stars',
   isLoaded: false,
-  listLastCommits: []
+  listFullNames: [],
+  listLastCommits: [],
+  isLoadedCommits: false
 };
 
-const allRepositories = (state = initialState, action: any) => {
+const allRepositories = (state = initialState, action: any): unknown => {
   switch (action.type) {
     case SET_DEFAULT_REPOSITORIES:
       return {
@@ -27,8 +31,7 @@ const allRepositories = (state = initialState, action: any) => {
       localStorage.setItem('selectPage', action.payload);
       return {
         ...state,
-        pageSearch: localStorage.getItem('selectPage'),
-        listLastCommits: []
+        pageSearch: localStorage.getItem('selectPage')
       };
 
     case GET_NAME_SEARCH:
@@ -37,8 +40,7 @@ const allRepositories = (state = initialState, action: any) => {
       return {
         ...state,
         nameSearch: localStorage.getItem('selectName'),
-        pageSearch: '1',
-        listLastCommits: []
+        pageSearch: '1'
       };
 
     case SET_LOADED:
@@ -47,10 +49,23 @@ const allRepositories = (state = initialState, action: any) => {
         isLoaded: action.payload
       };
 
+    case SET_FULL_NAMES:
+      return {
+        ...state,
+        listFullNames: action.payload
+      };
+
     case SET_COMMITS_LIST:
       return {
         ...state,
-        listLastCommits: action.payload
+        listLastCommits: [...state.listLastCommits, action.payload],
+        isLoadedCommits: true
+      };
+
+    case SET_LOADED_COMMITS:
+      return {
+        ...state,
+        isLoadedCommits: action.payload
       };
 
     default:

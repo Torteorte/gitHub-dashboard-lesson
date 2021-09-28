@@ -5,7 +5,12 @@ import { useSelector } from 'react-redux';
 
 const ReposList: React.FC = () => {
   const {
-    allRepositoriesPageReducer: { listRepositories, isLoaded, listLastCommits }
+    allRepositoriesPageReducer: {
+      listRepositories,
+      isLoaded,
+      listLastCommits,
+      isLoadedCommits
+    }
   }: any = useSelector((store) => store);
 
   return (
@@ -58,9 +63,7 @@ const ReposList: React.FC = () => {
                 </p>
                 <p>
                   Last commit:{' '}
-                  {listLastCommits.length !== 0
-                    ? listLastCommits[index]
-                    : 'loading...'}
+                  {!isLoadedCommits ? 'loading...' : listLastCommits[index]}
                 </p>
               </div>
             </StyledList>

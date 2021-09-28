@@ -1,12 +1,16 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { StyledMain } from './styled';
 
 import ReposList from './ReposList/ReposList';
 import PaginationBlock from './PaginationBlock/PaginationBlock';
 import SearchBlock from './SearchBlock/SearchBlock';
 
-import { getNameAC, getPageAC } from '../../redux/AllRepositoriesPage/actions';
+import {
+  getNameAC,
+  getPageAC,
+  setFullNamesListAC
+} from '../../redux/AllRepositoriesPage/actions';
 import {
   setCommitsThunk,
   setRepositoriesThunk
@@ -15,8 +19,13 @@ import {
 const AllRepositoriesPage: React.FC = () => {
   const dispatch = useDispatch();
   const {
-    allRepositoriesPageReducer: { listRepositories, pageSearch, nameSearch }
-  }: any = useSelector((store) => store);
+    allRepositoriesPageReducer: {
+      listRepositories,
+      pageSearch,
+      nameSearch,
+      listFullNames
+    }
+  }: RootStateOrAny = useSelector((store) => store);
 
   const handlerChangePage = (pageNumber: string) => {
     dispatch(getPageAC(pageNumber));
@@ -31,10 +40,18 @@ const AllRepositoriesPage: React.FC = () => {
   }, [dispatch, pageSearch, nameSearch]);
 
   React.useEffect(() => {
-    if (listRepositories) {
-      dispatch(setCommitsThunk(listRepositories.items[0].full_name));
-    }
-  }, [dispatch, listRepositories]);
+    if (listRepositories.items === undefined) return;
+    const listArray = listRepositories.items.map(
+      (obj: Record<string, unknown>) => obj.full_name
+    );
+    dispatch(setFullNamesListAC(listArray));
+  }, [dispatch, listRepositories.items]);
+
+  React.useEffect(() => {
+    listFullNames.map((obj: string) => dispatch(setCommitsThunk(obj)));
+  }, [dispatch, listFullNames]);
+
+  // console.log(listFullNames);
 
   return (
     <StyledMain>
