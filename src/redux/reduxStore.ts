@@ -1,7 +1,7 @@
 import thunkMiddleware from 'redux-thunk';
 import { applyMiddleware, combineReducers, createStore, compose } from 'redux';
-import userPageReducer from './UserPage/userPageReducer';
-import allRepositoriesPageReducer from './AllRepositoriesPage/allRepositoriesReducer';
+import userPageReducer from './UserPage/reducer';
+import allRepositoriesPageReducer from './AllRepositoriesPage/reducer';
 
 const reducers = combineReducers({
   userPageReducer,

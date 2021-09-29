@@ -1,17 +1,17 @@
 import React from 'react';
-import { StyledList, StyledLoading, StyledNoResult } from './styled';
+import {
+  StyledLink,
+  StyledList,
+  StyledLoading,
+  StyledNoResult
+} from './styled';
 
-import { useSelector } from 'react-redux';
+import { RootStateOrAny, useSelector } from 'react-redux';
 
 const ReposList: React.FC = () => {
   const {
-    allRepositoriesPageReducer: {
-      listRepositories,
-      isLoaded,
-      listLastCommits,
-      isLoadedCommits
-    }
-  }: any = useSelector((store) => store);
+    allRepositoriesPageReducer: { listRepositories, isLoaded, listLastCommits }
+  }: RootStateOrAny = useSelector((store) => store);
 
   return (
     <ul>
@@ -24,7 +24,10 @@ const ReposList: React.FC = () => {
               <div>
                 <h3>{obj.owner.login}</h3>
                 <p>
-                  <a href={`https://github.com/${obj.owner.login}/${obj.name}`}>
+                  <StyledLink
+                    title={`github.com/${obj.owner.login}/${obj.name}`}
+                    href={`https://github.com/${obj.owner.login}/${obj.name}`}
+                  >
                     <svg
                       aria-hidden="true"
                       height="16"
@@ -40,7 +43,7 @@ const ReposList: React.FC = () => {
                       ></path>
                     </svg>{' '}
                     {obj.owner.login}/<span>{obj.name}</span>
-                  </a>
+                  </StyledLink>
                 </p>
               </div>
               <div>
@@ -62,8 +65,9 @@ const ReposList: React.FC = () => {
                   Stars {obj.stargazers_count}
                 </p>
                 <p>
-                  Last commit:{' '}
-                  {!isLoadedCommits ? 'loading...' : listLastCommits[index]}
+                  Last commit: {/*{listLastCommits.length === 0*/}
+                  {/*? 'loading...'*/}
+                  {/*  : listLastCommits[index]}*/}
                 </p>
               </div>
             </StyledList>

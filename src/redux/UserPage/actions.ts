@@ -3,7 +3,7 @@ import {
   SET_REPOSITORY_COMMITS,
   SET_REPOSITORY_LANGUAGES,
   SET_REPOSITORY_CONTRIBUTORS,
-  SET_LOADED
+  SET_LOADED_CARD
 } from './types';
 
 export const repositoryInfoAC = (items: any) => ({
@@ -26,4 +26,7 @@ export const repositoryContributorsAC = (items: any) => ({
   payload: items
 });
 
-export const setLoaded = (payload: any) => ({ type: SET_LOADED, payload });
+export const setLoaded = (payload: boolean) => ({
+  type: SET_LOADED_CARD,
+  payload
+});

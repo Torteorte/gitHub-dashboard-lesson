@@ -11,13 +11,13 @@ export const StyledHeadContainer = styled.main`
     width: 80%;
     margin: auto;
   }
+`;
 
-  h2 {
-    margin: 0;
-    padding: 16px;
-    font-size: 20px;
-    font-weight: 500;
-    text-align: left;
-    color: #57606a;
-  }
+export const StyledHeader = styled.h2`
+  margin: 0;
+  padding: 16px;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: left;
+  color: #57606a;
 `;

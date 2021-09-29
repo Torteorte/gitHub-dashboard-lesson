@@ -3,7 +3,7 @@ import {
   SET_REPOSITORY_COMMITS,
   SET_REPOSITORY_LANGUAGES,
   SET_REPOSITORY_CONTRIBUTORS,
-  SET_LOADED
+  SET_LOADED_CARD
 } from './types';
 
 const initialState = {
@@ -43,7 +43,7 @@ const userPageReducer = (state = initialState, action: any) => {
         isLoaded: true
       };
 
-    case SET_LOADED:
+    case SET_LOADED_CARD:
       return {
         ...state,
         isLoaded: action.payload

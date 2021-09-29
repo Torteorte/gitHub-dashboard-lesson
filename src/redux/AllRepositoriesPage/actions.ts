@@ -4,8 +4,7 @@ import {
   SET_DEFAULT_REPOSITORIES,
   SET_LOADED,
   SET_FULL_NAMES,
-  SET_COMMITS_LIST,
-  SET_LOADED_COMMITS
+  SET_COMMITS_LIST
 } from './types';
 
 export const setDefaultReposAC = (items: Record<string, unknown>): unknown => ({
@@ -35,12 +34,7 @@ export const setFullNamesListAC = (
   payload: items
 });
 
-export const setCommitsListAC = (items: Record<string, unknown>): unknown => ({
+export const setCommitsListAC = (items: string): unknown => ({
   type: SET_COMMITS_LIST,
   payload: items
-});
-
-export const setLoadedCommits = (payload: boolean): unknown => ({
-  type: SET_LOADED_COMMITS,
-  payload
 });

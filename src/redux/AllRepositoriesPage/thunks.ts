@@ -1,10 +1,5 @@
 import axios from 'axios';
-import {
-  setCommitsListAC,
-  setDefaultReposAC,
-  setLoaded
-  // setLoadedCommits
-} from './actions';
+import { setCommitsListAC, setDefaultReposAC, setLoaded } from './actions';
 
 export const setRepositoriesThunk =
   (pageSearch: number, nameSearch: string) =>
@@ -19,13 +14,13 @@ export const setRepositoriesThunk =
 export const setCommitsThunk =
   (name: string) =>
   async (dispatch: any): Promise<void> => {
-    // dispatch(setLoadedCommits(false));
-    const response = await axios.get(
-      `https://api.github.com/repos/${name}/commits`
+    const response = await axios.get(`${name.split('{')[0]}`);
+
+    console.log(
+      response.data[0].commit.author.date.slice(0, 10),
+      response.data[0].url
     );
-    dispatch(
-      setCommitsListAC(
-        response.data[0].commit.author.date.toLocaleString().slice(0, 10)
-      )
-    );
+    // dispatch(
+    //   setCommitsListAC(response.data[0].commit.author.date.slice(0, 10))
+    // );
   };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyledContainerPagination } from './styled';
 import { Pagination } from 'antd';
-import { useSelector } from 'react-redux';
+import { RootStateOrAny, useSelector } from 'react-redux';
 
 interface props {
   changePage: any;
@@ -10,9 +10,9 @@ interface props {
 const PaginationBlock: React.FC<props> = ({ changePage }) => {
   const {
     allRepositoriesPageReducer: { listRepositories, pageSearch, isLoaded }
-  }: any = useSelector((store) => store);
+  }: RootStateOrAny = useSelector((store) => store);
 
-  const onChangePage = (number: any) => {
+  const onChangePage = (number: unknown) => {
     changePage(number);
   };
 

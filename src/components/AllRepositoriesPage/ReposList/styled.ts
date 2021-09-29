@@ -21,21 +21,26 @@ export const StyledList = styled.li`
     font-weight: 500;
   }
 
-  a {
-    font-size: 1.05rem;
-    color: rgb(9, 105, 218);
-    font-weight: 400;
-    letter-spacing: 0.25px;
-
-    span {
-      letter-spacing: 0.5px;
-      font-weight: 500;
-    }
-  }
-
   svg {
     fill: dimgrey;
     margin: -3px 2px;
+  }
+`;
+
+export const StyledLink = styled.a`
+  font-size: 1.05rem;
+  color: rgb(9, 105, 218);
+  font-weight: 400;
+  letter-spacing: 0.25px;
+  padding: 15px 0;
+
+  :hover {
+    text-decoration: underline;
+  }
+
+  span {
+    letter-spacing: 0.5px;
+    font-weight: 500;
   }
 `;
 

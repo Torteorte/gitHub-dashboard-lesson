@@ -2,6 +2,8 @@ import React from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { StyledMain } from './styled';
 
+import { IGithubData, IRepository } from '../../common/utils/utils';
+
 import ReposList from './ReposList/ReposList';
 import PaginationBlock from './PaginationBlock/PaginationBlock';
 import SearchBlock from './SearchBlock/SearchBlock';
@@ -23,7 +25,7 @@ const AllRepositoriesPage: React.FC = () => {
       listRepositories,
       pageSearch,
       nameSearch,
-      listFullNames
+      listCommitsRepositories
     }
   }: RootStateOrAny = useSelector((store) => store);
 
@@ -41,17 +43,33 @@ const AllRepositoriesPage: React.FC = () => {
 
   React.useEffect(() => {
     if (listRepositories.items === undefined) return;
-    const listArray = listRepositories.items.map(
-      (obj: Record<string, unknown>) => obj.full_name
+    const listRepositoriesObjects = listRepositories.items.reduce(
+      (prev: IGithubData, obj: Record<string, unknown>) => {
+        const repositoryItem: IRepository = {
+          stars: obj.stargazers_count,
+          commits_url: obj.commits_url,
+          full_name: obj.full_name
+        };
+
+        const repositoriesList: IGithubData = {
+          [[repositoryItem.full_name].toString()]: repositoryItem
+        };
+        return {
+          ...prev,
+          ...repositoriesList
+        };
+      },
+      {}
     );
-    dispatch(setFullNamesListAC(listArray));
+    dispatch(setFullNamesListAC(listRepositoriesObjects));
   }, [dispatch, listRepositories.items]);
 
   React.useEffect(() => {
-    listFullNames.map((obj: string) => dispatch(setCommitsThunk(obj)));
-  }, [dispatch, listFullNames]);
-
-  // console.log(listFullNames);
+    Object.keys(listCommitsRepositories).forEach(function (key) {
+      // console.log(key, listCommitsRepositories[key].full_name);
+      dispatch(setCommitsThunk(listCommitsRepositories[key].commits_url));
+    });
+  }, [dispatch, listCommitsRepositories]);
 
   return (
     <StyledMain>

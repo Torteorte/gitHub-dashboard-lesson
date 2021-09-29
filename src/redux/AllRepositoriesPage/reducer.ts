@@ -3,9 +3,8 @@ import {
   GET_PAGE,
   SET_DEFAULT_REPOSITORIES,
   SET_LOADED,
-  SET_FULL_NAMES,
-  SET_COMMITS_LIST,
-  SET_LOADED_COMMITS
+  SET_FULL_NAMES
+  // SET_COMMITS_LIST
 } from './types';
 
 const initialState = {
@@ -13,9 +12,8 @@ const initialState = {
   pageSearch: localStorage.getItem('selectPage') || '1',
   nameSearch: localStorage.getItem('selectName') || 'stars',
   isLoaded: false,
-  listFullNames: [],
-  listLastCommits: [],
-  isLoadedCommits: false
+  listCommitsRepositories: {}
+  // listLastCommits: {}
 };
 
 const allRepositories = (state = initialState, action: any): unknown => {
@@ -52,21 +50,17 @@ const allRepositories = (state = initialState, action: any): unknown => {
     case SET_FULL_NAMES:
       return {
         ...state,
-        listFullNames: action.payload
+        listCommitsRepositories: action.payload
       };
 
-    case SET_COMMITS_LIST:
-      return {
-        ...state,
-        listLastCommits: [...state.listLastCommits, action.payload],
-        isLoadedCommits: true
-      };
-
-    case SET_LOADED_COMMITS:
-      return {
-        ...state,
-        isLoadedCommits: action.payload
-      };
+    // case SET_COMMITS_LIST:
+    //   return {
+    //     ...state,
+    //     listLastCommits: {
+    //       ...state.listLastCommits,
+    //       list: [...state.listLastCommits.list, action.payload]
+    //     }
+    //   };
 
     default:
       return state;
