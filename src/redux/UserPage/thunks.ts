@@ -8,25 +8,26 @@ import {
 } from './actions';
 
 export const setRepositoryThunk =
-  (userName: string, repositoryName: string) => async (dispatch: any) => {
+  (repositoryName: string) =>
+  async (dispatch: any): Promise<void> => {
     dispatch(setLoaded(false));
     const response = await axios.get(
-      `https://api.github.com/repos/${userName}/${repositoryName}`
+      `https://api.github.com/repos/${repositoryName}`
     );
     dispatch(repositoryInfoAC(response.data));
 
     const responseCommits = await axios.get(
-      `https://api.github.com/repos/${userName}/${repositoryName}/commits`
+      `https://api.github.com/repos/${repositoryName}/commits`
     );
     dispatch(repositoryCommitsAC(responseCommits.data));
 
     const responseLanguage = await axios.get(
-      `https://api.github.com/repos/${userName}/${repositoryName}/languages`
+      `https://api.github.com/repos/${repositoryName}/languages`
     );
     dispatch(repositoryLanguagesAC(responseLanguage.data));
 
     const responseContributes = await axios.get(
-      `https://api.github.com/repos/${userName}/${repositoryName}/contributors`
+      `https://api.github.com/repos/${repositoryName}/contributors`
     );
     dispatch(repositoryContributorsAC(responseContributes.data.slice(0, 10)));
   };

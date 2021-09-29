@@ -13,12 +13,12 @@ import { setRepositoryThunk } from '../../redux/UserPage/thunks';
 const RepositoryCard: React.FC = () => {
   const dispatch = useDispatch();
   const {
-    userPageReducer: { userName, repositoryName }
+    userPageReducer: { repositoryName }
   }: any = useSelector((store) => store);
 
   React.useEffect(() => {
-    dispatch(setRepositoryThunk(userName, repositoryName));
-  }, [dispatch, userName, repositoryName]);
+    dispatch(setRepositoryThunk(repositoryName));
+  }, [dispatch, repositoryName]);
 
   return (
     <StyledMain>

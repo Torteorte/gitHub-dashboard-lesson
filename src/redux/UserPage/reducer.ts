@@ -3,12 +3,13 @@ import {
   SET_REPOSITORY_COMMITS,
   SET_REPOSITORY_LANGUAGES,
   SET_REPOSITORY_CONTRIBUTORS,
-  SET_LOADED_CARD
+  SET_LOADED_CARD,
+  USER_CARD_PAGE_SET_REPOSITORY_NAME
 } from './types';
 
 const initialState = {
   userName: '996icu',
-  repositoryName: '996.ICU',
+  repositoryName: '996icu/996.ICU',
   repositoryInfo: {},
   repositoryCommits: {},
   repositoryLanguages: {},
@@ -47,6 +48,12 @@ const userPageReducer = (state = initialState, action: any) => {
       return {
         ...state,
         isLoaded: action.payload
+      };
+
+    case USER_CARD_PAGE_SET_REPOSITORY_NAME:
+      return {
+        ...state,
+        repositoryName: action.payload
       };
 
     default:
