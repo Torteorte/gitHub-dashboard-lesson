@@ -1,12 +1,10 @@
 import React from 'react';
-import { StyledHeader } from './styled';
+import { StyledHeader, StyledTitle } from './styled';
 
-const Header: React.FC = () => {
+export const Header: React.FC = () => {
   return (
     <StyledHeader>
-      <h1>GitHub Dashboard</h1>
+      <StyledTitle>GitHub Dashboard</StyledTitle>
     </StyledHeader>
   );
 };
-
-export default Header;

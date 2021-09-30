@@ -1,22 +1,22 @@
 import React from 'react';
-import { StyledHeadContainer, StyledHeader } from './styled';
-
-import { Input } from 'antd';
 import { RootStateOrAny, useSelector } from 'react-redux';
-const { Search } = Input;
+import { StyledHeadContainer, StyledHeader, StyledSearch } from './styled';
 
 interface props {
-  handlerNameSearch: any;
+  handlerNameSearch: (name: string) => void;
 }
 
-const SearchBlock: React.FC<props> = ({ handlerNameSearch }) => {
+export const SearchBlock: React.FC<props> = ({ handlerNameSearch }) => {
   const {
     allRepositoriesPageReducer: { nameSearch }
   }: RootStateOrAny = useSelector((store) => store);
 
   const onNameSearch = (name: string) => {
+    // результат поиска конкретно по имени репозитория
     let result = `${name}+in:name`;
-    if (name === nameSearch.split('+')[0]) return;
+    if (name === nameSearch.split('+')[0]) {
+      return;
+    }
     if (name === '') {
       result = 'stars';
     }
@@ -26,7 +26,7 @@ const SearchBlock: React.FC<props> = ({ handlerNameSearch }) => {
   return (
     <StyledHeadContainer>
       <StyledHeader>List of repositories</StyledHeader>
-      <Search
+      <StyledSearch
         placeholder="Enter repository name"
         defaultValue={nameSearch === 'stars' ? '' : nameSearch.split('+')[0]}
         onSearch={onNameSearch}
@@ -35,5 +35,3 @@ const SearchBlock: React.FC<props> = ({ handlerNameSearch }) => {
     </StyledHeadContainer>
   );
 };
-
-export default SearchBlock;

@@ -1,12 +1,11 @@
 import React from 'react';
-import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { StyledMain } from './styled';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
+import { IGithubData, IRepository } from '../../common/utils/types';
 
-import { IGithubData, IRepository } from '../../common/utils/utils';
-
-import ReposList from './ReposList/ReposList';
-import PaginationBlock from './PaginationBlock/PaginationBlock';
-import SearchBlock from './SearchBlock/SearchBlock';
+import { ReposList } from './ReposList/ReposList';
+import { PaginationBlock } from './PaginationBlock/PaginationBlock';
+import { SearchBlock } from './SearchBlock/SearchBlock';
 
 import {
   getNameAC,
@@ -18,18 +17,18 @@ import {
   setRepositoriesThunk
 } from '../../redux/AllRepositoriesPage/thunks';
 
-const AllRepositoriesPage: React.FC = () => {
+export const AllRepositories: React.FC = () => {
   const dispatch = useDispatch();
   const {
     allRepositoriesPageReducer: {
       listRepositories,
       pageSearch,
       nameSearch,
-      listCommitsRepositories
+      repositoriesWithDateCommit
     }
   }: RootStateOrAny = useSelector((store) => store);
 
-  const handlerChangePage = (pageNumber: string) => {
+  const handlerChangePage = (pageNumber: unknown) => {
     dispatch(getPageAC(pageNumber));
   };
 
@@ -42,10 +41,13 @@ const AllRepositoriesPage: React.FC = () => {
   }, [dispatch, pageSearch, nameSearch]);
 
   React.useEffect(() => {
-    if (listRepositories.items === undefined) return;
+    if (listRepositories.items === undefined) {
+      return;
+    }
     const listRepositoriesObjects = listRepositories.items.reduce(
       (prev: IGithubData, obj: Record<string, unknown>) => {
         const repositoryItem: IRepository = {
+          date: null,
           stars: obj.stargazers_count,
           commits_url: obj.commits_url,
           full_name: obj.full_name
@@ -62,14 +64,14 @@ const AllRepositoriesPage: React.FC = () => {
       {}
     );
     dispatch(setFullNamesListAC(listRepositoriesObjects));
-  }, [dispatch, listRepositories.items]);
+  }, [dispatch, listRepositories]);
 
-  React.useEffect(() => {
-    Object.keys(listCommitsRepositories).forEach(function (key) {
-      // console.log(key, listCommitsRepositories[key].full_name);
-      dispatch(setCommitsThunk(listCommitsRepositories[key].commits_url));
-    });
-  }, [dispatch, listCommitsRepositories]);
+  // React.useEffect(() => {
+  //   const keylist = Object.keys(repositoriesWithDateCommit);
+  //   // Object.keys(repositoriesWithDateCommit).forEach(function (key) {
+  //   //   const reposObj = repositoriesWithDateCommit[key];
+  //   keylist.map((fullname) => dispatch(setCommitsThunk(fullname)));
+  // }, [dispatch, repositoriesWithDateCommit]);
 
   return (
     <StyledMain>
@@ -79,5 +81,3 @@ const AllRepositoriesPage: React.FC = () => {
     </StyledMain>
   );
 };
-
-export default AllRepositoriesPage;

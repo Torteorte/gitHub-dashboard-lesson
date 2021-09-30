@@ -3,8 +3,8 @@ import {
   GET_PAGE,
   SET_DEFAULT_REPOSITORIES,
   SET_LOADED,
-  SET_FULL_NAMES
-  // SET_COMMITS_LIST
+  SET_FULL_NAMES,
+  SET_COMMITS_DATE
 } from './types';
 
 const initialState = {
@@ -12,8 +12,7 @@ const initialState = {
   pageSearch: localStorage.getItem('selectPage') || '1',
   nameSearch: localStorage.getItem('selectName') || 'stars',
   isLoaded: false,
-  listCommitsRepositories: {}
-  // listLastCommits: {}
+  repositoriesWithDateCommit: {}
 };
 
 const allRepositories = (state = initialState, action: any): unknown => {
@@ -50,17 +49,22 @@ const allRepositories = (state = initialState, action: any): unknown => {
     case SET_FULL_NAMES:
       return {
         ...state,
-        listCommitsRepositories: action.payload
+        repositoriesWithDateCommit: action.payload
       };
 
-    // case SET_COMMITS_LIST:
-    //   return {
-    //     ...state,
-    //     listLastCommits: {
-    //       ...state.listLastCommits,
-    //       list: [...state.listLastCommits.list, action.payload]
-    //     }
-    //   };
+    case SET_COMMITS_DATE:
+      const key = action.payload.reposName.full_name;
+      return {
+        ...state,
+        repositoriesWithDateCommit: {
+          ...state.repositoriesWithDateCommit,
+          [key]: {
+            // @ts-ignore
+            ...state.repositoriesWithDateCommit[key],
+            date: action.payload.reposDate
+          }
+        }
+      };
 
     default:
       return state;

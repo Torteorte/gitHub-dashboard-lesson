@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { Input } from 'antd';
+const { Search } = Input;
 
 export const StyledHeadContainer = styled.main`
   display: grid;
@@ -6,11 +8,11 @@ export const StyledHeadContainer = styled.main`
   align-items: center;
   background-color: #f6f8fa;
   border-bottom: 1px solid #d0d7de;
+`;
 
-  > span {
-    width: 80%;
-    margin: auto;
-  }
+export const StyledSearch = styled(Search)`
+  width: 80%;
+  margin: auto;
 `;
 
 export const StyledHeader = styled.h2`

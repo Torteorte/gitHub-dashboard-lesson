@@ -4,7 +4,7 @@ import {
   SET_DEFAULT_REPOSITORIES,
   SET_LOADED,
   SET_FULL_NAMES,
-  SET_COMMITS_LIST
+  SET_COMMITS_DATE
 } from './types';
 
 export const setDefaultReposAC = (items: Record<string, unknown>): unknown => ({
@@ -12,7 +12,7 @@ export const setDefaultReposAC = (items: Record<string, unknown>): unknown => ({
   payload: items
 });
 
-export const getPageAC = (pageNumber: string): unknown => ({
+export const getPageAC = (pageNumber: unknown): unknown => ({
   type: GET_PAGE,
   payload: pageNumber
 });
@@ -34,7 +34,13 @@ export const setFullNamesListAC = (
   payload: items
 });
 
-export const setCommitsListAC = (items: string): unknown => ({
-  type: SET_COMMITS_LIST,
-  payload: items
+export const setCommitDateAC = (
+  reposName: any,
+  reposDate: string
+): unknown => ({
+  type: SET_COMMITS_DATE,
+  payload: {
+    reposName,
+    reposDate
+  }
 });

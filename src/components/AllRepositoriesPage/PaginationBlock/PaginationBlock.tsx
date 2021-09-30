@@ -4,10 +4,10 @@ import { Pagination } from 'antd';
 import { RootStateOrAny, useSelector } from 'react-redux';
 
 interface props {
-  changePage: any;
+  changePage: (name: unknown) => void;
 }
 
-const PaginationBlock: React.FC<props> = ({ changePage }) => {
+export const PaginationBlock: React.FC<props> = ({ changePage }) => {
   const {
     allRepositoriesPageReducer: { listRepositories, pageSearch, isLoaded }
   }: RootStateOrAny = useSelector((store) => store);
@@ -37,5 +37,3 @@ const PaginationBlock: React.FC<props> = ({ changePage }) => {
     </StyledContainerPagination>
   );
 };
-
-export default PaginationBlock;

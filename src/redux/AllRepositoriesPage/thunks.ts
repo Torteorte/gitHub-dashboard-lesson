@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { setCommitsListAC, setDefaultReposAC, setLoaded } from './actions';
+import { setDefaultReposAC, setCommitDateAC, setLoaded } from './actions';
 
 export const setRepositoriesThunk =
   (pageSearch: number, nameSearch: string) =>
@@ -12,15 +12,12 @@ export const setRepositoriesThunk =
   };
 
 export const setCommitsThunk =
-  (name: string) =>
+  (fullName: any) =>
   async (dispatch: any): Promise<void> => {
-    const response = await axios.get(`${name.split('{')[0]}`);
-
-    console.log(
-      response.data[0].commit.author.date.slice(0, 10),
-      response.data[0].url
+    const response = await axios.get(
+      `https://api.github.com/repos/${fullName}/commits`
     );
-    // dispatch(
-    //   setCommitsListAC(response.data[0].commit.author.date.slice(0, 10))
-    // );
+    const date = response.data[0].commit.author.date;
+    // console.log(date);
+    dispatch(setCommitDateAC(fullName, date));
   };

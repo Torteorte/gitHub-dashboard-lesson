@@ -1,19 +1,21 @@
 import React from 'react';
+import 'antd/dist/antd.css';
+import { StyledAppContainer } from './styled';
+import { BrowserRouter } from 'react-router-dom';
 
-import './App.css';
+import { Header } from './Header/Header';
+import { AllRepositories } from './AllRepositoriesPage/AllRepositories';
 
-import Header from './Header/Header';
-import AllRepositories from './AllRepositoriesPage/AllRepositories';
 // import RepositoryCard from './RepositoryCard/RepositoryCard';
 
-const App: React.FC = () => {
+export const App: React.FC = () => {
   return (
-    <div className="App">
+    <StyledAppContainer>
       <Header />
-      <AllRepositories />
-      {/*<RepositoryCard />*/}
-    </div>
+      <BrowserRouter>
+        <AllRepositories />
+        {/*<RepositoryCard />*/}
+      </BrowserRouter>
+    </StyledAppContainer>
   );
 };
-
-export default App;
