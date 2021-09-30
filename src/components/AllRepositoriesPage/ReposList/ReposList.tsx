@@ -9,22 +9,20 @@ import {
 
 import { RepositoryMainInfo } from './RepositoryMainInfo/RepositoryMainInfo';
 import { RepositoryStats } from './RepositoryStats/RepositoryStats';
-// import { setRepositoryNameAC } from '../../../redux/UserPage/actions';
 
 export const ReposList: React.FC = () => {
-  // const dispatch = useDispatch();
   const {
     allRepositoriesPageReducer: { listRepositories, isLoaded }
   }: RootStateOrAny = useSelector((store) => store);
 
   const repositoriesLIst = isLoaded ? (
-    listRepositories.items.map((obj: any) => (
+    listRepositories.items.map((obj: any, index: number) => (
       <StyledListItem key={obj.id}>
         <RepositoryMainInfo
           userName={obj.owner.login}
           repositoryName={obj.name}
         />
-        <RepositoryStats stars={obj.stargazers_count} />
+        <RepositoryStats stars={obj.stargazers_count} index={index} />
       </StyledListItem>
     ))
   ) : (

@@ -4,22 +4,29 @@ import {
   StyledRepositoryIcon,
   StyledSpanElement
 } from './styled';
+import { ROUTES } from '../../../../../common/routes/routes';
 
 interface props {
   userName: string;
   repositoryName: string;
+  changeRepositoryName: (name: string) => void;
 }
 
-export const LinkToCard: React.FC<props> = ({ userName, repositoryName }) => {
-  // const changeRepositoryName = (name: string) => {
-  //   dispatch(setRepositoryNameAC(name));
-  // };
+export const LinkToCard: React.FC<props> = ({
+  userName,
+  repositoryName,
+  changeRepositoryName
+}) => {
+  const setRepositoryName = () => {
+    const targetValue = `${userName}/${repositoryName}`;
+    changeRepositoryName(targetValue);
+  };
 
   return (
     <StyledNavLink
       title={`github.com/${userName}/${repositoryName}`}
-      // href={`https://github.com/${userName}/${repositoryName}`}
-      href={`https://github.com/${userName}/${repositoryName}`}
+      to={ROUTES.reposCard}
+      onClick={setRepositoryName}
     >
       <StyledRepositoryIcon
         aria-hidden="true"

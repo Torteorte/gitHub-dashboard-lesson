@@ -6,9 +6,10 @@ import {
   SET_LOADED_CARD,
   USER_CARD_PAGE_SET_REPOSITORY_NAME
 } from './types';
+import { AnyAction } from 'redux';
 
 const initialState = {
-  userName: '996icu',
+  // userName: '996icu', // имя юзера в названии репозитория до слеша
   repositoryName: '996icu/996.ICU',
   repositoryInfo: {},
   repositoryCommits: {},
@@ -17,7 +18,7 @@ const initialState = {
   isLoaded: false
 };
 
-const userPageReducer = (state = initialState, action: any) => {
+const userPageReducer = (state = initialState, action: AnyAction) => {
   switch (action.type) {
     case SET_REPOSITORY_INFO:
       return {

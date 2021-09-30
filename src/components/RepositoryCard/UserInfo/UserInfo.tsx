@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 const UserInfo: React.FC = () => {
   const {
-    userPageReducer: { userName, repositoryInfo }
+    userPageReducer: { repositoryInfo }
   }: any = useSelector((store) => store);
 
   return (
@@ -30,13 +30,13 @@ const UserInfo: React.FC = () => {
         </a>
         <p>
           Author:{' '}
-          <a
-            href={
-              !repositoryInfo.owner ? userName : repositoryInfo.owner.html_url
-            }
-          >
-            {!repositoryInfo.owner ? userName : repositoryInfo.owner.login}
-          </a>
+          {!repositoryInfo.owner ? (
+            `Github User`
+          ) : (
+            <a href={repositoryInfo.owner.html_url}>
+              {repositoryInfo.owner.login}
+            </a>
+          )}
         </p>
       </StyledUser>
       <StyledParagraphUser>{repositoryInfo.description}</StyledParagraphUser>

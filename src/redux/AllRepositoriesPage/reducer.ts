@@ -4,18 +4,21 @@ import {
   SET_DEFAULT_REPOSITORIES,
   SET_LOADED,
   SET_FULL_NAMES,
+  SET_LIST_KEYS,
   SET_COMMITS_DATE
 } from './types';
+import { AnyAction } from 'redux';
 
 const initialState = {
   listRepositories: [],
   pageSearch: localStorage.getItem('selectPage') || '1',
   nameSearch: localStorage.getItem('selectName') || 'stars',
   isLoaded: false,
-  repositoriesWithDateCommit: {}
+  repositoriesWithDateCommit: {},
+  listKeys: []
 };
 
-const allRepositories = (state = initialState, action: any): unknown => {
+const allRepositories = (state = initialState, action: AnyAction): unknown => {
   switch (action.type) {
     case SET_DEFAULT_REPOSITORIES:
       return {
@@ -43,7 +46,15 @@ const allRepositories = (state = initialState, action: any): unknown => {
     case SET_LOADED:
       return {
         ...state,
-        isLoaded: action.payload
+        isLoaded: action.payload,
+        listKeys: [],
+        repositoriesWithDateCommit: {}
+      };
+
+    case SET_LIST_KEYS:
+      return {
+        ...state,
+        listKeys: action.payload
       };
 
     case SET_FULL_NAMES:
@@ -53,7 +64,7 @@ const allRepositories = (state = initialState, action: any): unknown => {
       };
 
     case SET_COMMITS_DATE:
-      const key = action.payload.reposName.full_name;
+      const key = action.payload.reposName;
       return {
         ...state,
         repositoriesWithDateCommit: {

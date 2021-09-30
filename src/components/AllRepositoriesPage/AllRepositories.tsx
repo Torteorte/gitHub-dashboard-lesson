@@ -10,7 +10,8 @@ import { SearchBlock } from './SearchBlock/SearchBlock';
 import {
   getNameAC,
   getPageAC,
-  setFullNamesListAC
+  setFullNamesListAC,
+  setListKeysAC
 } from '../../redux/AllRepositoriesPage/actions';
 import {
   setCommitsThunk,
@@ -24,7 +25,7 @@ export const AllRepositories: React.FC = () => {
       listRepositories,
       pageSearch,
       nameSearch,
-      repositoriesWithDateCommit
+      listKeys
     }
   }: RootStateOrAny = useSelector((store) => store);
 
@@ -66,12 +67,19 @@ export const AllRepositories: React.FC = () => {
     dispatch(setFullNamesListAC(listRepositoriesObjects));
   }, [dispatch, listRepositories]);
 
-  // React.useEffect(() => {
-  //   const keylist = Object.keys(repositoriesWithDateCommit);
-  //   // Object.keys(repositoriesWithDateCommit).forEach(function (key) {
-  //   //   const reposObj = repositoriesWithDateCommit[key];
-  //   keylist.map((fullname) => dispatch(setCommitsThunk(fullname)));
-  // }, [dispatch, repositoriesWithDateCommit]);
+  React.useEffect(() => {
+    if (listRepositories.items === undefined) {
+      return;
+    }
+    const listKeys = listRepositories.items.map(
+      (keys: Record<string, unknown>) => keys.full_name
+    );
+    dispatch(setListKeysAC(listKeys));
+  }, [dispatch, listRepositories]);
+
+  React.useEffect(() => {
+    listKeys.map((fullName: string) => dispatch(setCommitsThunk(fullName)));
+  }, [dispatch, listKeys]);
 
   return (
     <StyledMain>
