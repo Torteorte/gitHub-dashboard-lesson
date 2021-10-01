@@ -1,4 +1,3 @@
 export const ROUTES = {
-  allRepos: '/repository/allRepos',
-  reposCard: '/repository/reposCard'
+  allRepos: '/repository/allRepos'
 };

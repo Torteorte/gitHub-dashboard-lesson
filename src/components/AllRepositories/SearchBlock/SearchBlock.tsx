@@ -18,7 +18,7 @@ export const SearchBlock: React.FC<props> = ({ handlerNameSearch }) => {
       return;
     }
     if (name === '') {
-      result = 'stars';
+      result = 'language:javascript';
     }
     handlerNameSearch(result);
   };
@@ -28,7 +28,9 @@ export const SearchBlock: React.FC<props> = ({ handlerNameSearch }) => {
       <StyledHeader>List of repositories</StyledHeader>
       <StyledSearch
         placeholder="Enter repository name"
-        defaultValue={nameSearch === 'stars' ? '' : nameSearch.split('+')[0]}
+        defaultValue={
+          nameSearch === 'language:javascript' ? '' : nameSearch.split('+')[0]
+        }
         onSearch={onNameSearch}
         enterButton
       />

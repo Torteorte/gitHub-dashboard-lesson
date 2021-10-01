@@ -12,9 +12,9 @@ const initialState = {
   // userName: '996icu', // имя юзера в названии репозитория до слеша
   repositoryName: localStorage.getItem('setName') || '996icu/996.ICU',
   repositoryInfo: {},
-  repositoryCommits: {},
+  repositoryCommits: '',
   repositoryLanguages: {},
-  repositoryContributors: {},
+  repositoryContributors: [],
   isLoaded: false
 };
 

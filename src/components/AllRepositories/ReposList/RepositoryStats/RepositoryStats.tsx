@@ -4,16 +4,13 @@ import { RootStateOrAny, useSelector } from 'react-redux';
 
 interface props {
   stars: number;
-  index: number;
+  repositoryName: string;
 }
 
-export const RepositoryStats: React.FC<props> = ({ stars, index }) => {
+export const RepositoryStats: React.FC<props> = ({ stars, repositoryName }) => {
   const {
     allRepositoriesPageReducer: { repositoriesWithDateCommit }
   }: RootStateOrAny = useSelector((store) => store);
-
-  const arrayDates = Object.keys(repositoriesWithDateCommit);
-  const itemDate = repositoriesWithDateCommit[arrayDates[index]];
 
   return (
     <StyledRightContainer>
@@ -35,10 +32,10 @@ export const RepositoryStats: React.FC<props> = ({ stars, index }) => {
         Stars {stars}
       </p>
       <p>
-        Last commit:{' '}
-        {itemDate && itemDate.date !== null
-          ? repositoriesWithDateCommit[arrayDates[index]].date
-          : `loading...`}
+        Last commit:
+        {!repositoriesWithDateCommit[repositoryName]
+          ? ' loading'
+          : ` ${repositoriesWithDateCommit[repositoryName].date}`}
       </p>
     </StyledRightContainer>
   );

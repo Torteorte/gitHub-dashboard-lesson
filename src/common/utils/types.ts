@@ -1,10 +1,21 @@
 export interface IRepository {
-  date: string | null;
-  stars: number | unknown;
-  commits_url: string | unknown;
-  full_name: string | unknown;
+  name: string;
+  full_name: string;
+  stars: string | number;
 }
 
-export interface IGithubData {
-  [key: string]: IRepository;
+export interface IContributor {
+  id: string | number;
+  htmlUrl: string;
+  login: string;
+  avatarUrl: string;
+}
+
+export interface IUser {
+  userName: string;
+  reposName: string;
+  htmlUrl: string;
+  avatarUrl: string;
+  stars: string | number;
+  description: string;
 }

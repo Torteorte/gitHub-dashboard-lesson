@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { RootStateOrAny, useSelector } from 'react-redux';
 import defaultImg from '../../../assets/default-git-hub-img.png';
 import {
   UserContainer,
@@ -11,36 +11,26 @@ import {
 
 export const UserInfo: React.FC = () => {
   const {
-    userPageReducer: { repositoryInfo }
-  }: any = useSelector((store) => store);
+    userPageReducer: { repositoryInfo, isLoaded }
+  }: RootStateOrAny = useSelector((store) => store);
 
   return (
     <UserContainer>
       <StyledUserContainer>
-        <a
-          href={
-            !repositoryInfo.owner
-              ? 'https://github.com/'
-              : repositoryInfo.owner.html_url
-          }
-        >
+        <a href={repositoryInfo.htmlUrl}>
           <StyledUserAvatar
             src={
-              !repositoryInfo.owner
-                ? defaultImg
-                : repositoryInfo.owner.avatar_url
+              !repositoryInfo.avatarUrl ? defaultImg : repositoryInfo.avatarUrl
             }
             alt="author-avatar"
           />
         </a>
         <StyledUserName>
           Author:{' '}
-          {!repositoryInfo.owner ? (
+          {!isLoaded ? (
             `Github User`
           ) : (
-            <a href={repositoryInfo.owner.html_url}>
-              {repositoryInfo.owner.login}
-            </a>
+            <a href={repositoryInfo.htmlUrl}>{repositoryInfo.userName}</a>
           )}
         </StyledUserName>
       </StyledUserContainer>

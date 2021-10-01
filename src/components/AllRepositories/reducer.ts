@@ -3,19 +3,19 @@ import {
   GET_PAGE,
   SET_DEFAULT_REPOSITORIES,
   SET_LOADED,
-  SET_FULL_NAMES,
-  SET_LIST_KEYS,
   SET_COMMITS_DATE
 } from './types';
 import { AnyAction } from 'redux';
 
 const initialState = {
-  listRepositories: [],
+  listRepositories: {
+    total_count: 0,
+    items: []
+  },
   pageSearch: localStorage.getItem('selectPage') || '1',
-  nameSearch: localStorage.getItem('selectName') || 'stars',
+  nameSearch: localStorage.getItem('selectName') || 'language:javascript',
   isLoaded: false,
-  repositoriesWithDateCommit: {},
-  listKeys: []
+  repositoriesWithDateCommit: {}
 };
 
 const allRepositories = (state = initialState, action: AnyAction): unknown => {
@@ -23,7 +23,10 @@ const allRepositories = (state = initialState, action: AnyAction): unknown => {
     case SET_DEFAULT_REPOSITORIES:
       return {
         ...state,
-        listRepositories: action.payload,
+        listRepositories: {
+          total_count: action.payload.total_count,
+          items: action.payload.items
+        },
         isLoaded: true
       };
 
@@ -49,18 +52,6 @@ const allRepositories = (state = initialState, action: AnyAction): unknown => {
         isLoaded: action.payload,
         listKeys: [],
         repositoriesWithDateCommit: {}
-      };
-
-    case SET_LIST_KEYS:
-      return {
-        ...state,
-        listKeys: action.payload
-      };
-
-    case SET_FULL_NAMES:
-      return {
-        ...state,
-        repositoriesWithDateCommit: action.payload
       };
 
     case SET_COMMITS_DATE:

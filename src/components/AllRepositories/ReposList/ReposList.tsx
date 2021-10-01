@@ -15,27 +15,24 @@ export const ReposList: React.FC = () => {
     allRepositoriesPageReducer: { listRepositories, isLoaded }
   }: RootStateOrAny = useSelector((store) => store);
 
-  const repositoriesLIst = isLoaded ? (
-    listRepositories.items.map((obj: any, index: number) => (
-      <StyledListItem key={obj.id}>
-        <RepositoryMainInfo
-          userName={obj.owner.login}
-          repositoryName={obj.name}
-        />
-        <RepositoryStats stars={obj.stargazers_count} index={index} />
-      </StyledListItem>
-    ))
-  ) : (
-    <StyledLoading>Loading...</StyledLoading>
-  );
+  const repositoriesList =
+    listRepositories.total_count !== 0 ? (
+      listRepositories.items.map((obj: any) => (
+        <StyledListItem key={obj.full_name}>
+          <RepositoryMainInfo
+            userName={obj.name}
+            repositoryName={obj.full_name}
+          />
+          <RepositoryStats stars={obj.stars} repositoryName={obj.full_name} />
+        </StyledListItem>
+      ))
+    ) : (
+      <StyledNoResult>No Results! Try another one.</StyledNoResult>
+    );
 
   return (
     <StyledList>
-      {listRepositories.total_count !== 0 ? (
-        repositoriesLIst
-      ) : (
-        <StyledNoResult>No Results! Try another one.</StyledNoResult>
-      )}
+      {isLoaded ? repositoriesList : <StyledLoading>Loading...</StyledLoading>}
     </StyledList>
   );
 };

@@ -8,7 +8,7 @@ import {
 } from './types';
 import { AnyAction } from 'redux';
 
-export const repositoryInfoAC = (items: string): AnyAction => ({
+export const repositoryInfoAC = (items: unknown): AnyAction => ({
   type: SET_REPOSITORY_INFO,
   payload: items
 });

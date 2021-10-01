@@ -8,8 +8,9 @@ export const StyledHeader = styled.header`
 `;
 
 export const StyledContainerStats = styled.div`
+  margin: 15px 15px 0 0;
+  align-self: center;
   text-align: right;
-  margin: 0px 20px;
   color: #57606a;
   font-size: 14px;
 `;

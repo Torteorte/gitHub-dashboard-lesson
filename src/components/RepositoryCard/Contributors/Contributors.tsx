@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { RootStateOrAny, useSelector } from 'react-redux';
 import {
   StyledContributorAvatar,
   StyledContributorItem,
@@ -7,23 +7,22 @@ import {
   StyledContributorsList,
   StyledTitle
 } from './styled';
-import { useSelector } from 'react-redux';
 
 export const Contributors: React.FC = () => {
   const {
-    userPageReducer: { repositoryContributors, isLoaded }
-  }: any = useSelector((store) => store);
+    userPageReducer: { repositoryContributors }
+  }: RootStateOrAny = useSelector((store) => store);
 
   return (
     <StyledContributors>
       <StyledTitle>Main contributors:</StyledTitle>
       <StyledContributorsList>
-        {isLoaded ? (
-          repositoryContributors.map((obj: any) => (
-            <StyledContributorItem key={obj.id}>
-              <a href={obj.html_url}>
+        {repositoryContributors.length !== 0 ? (
+          repositoryContributors.map((user: any) => (
+            <StyledContributorItem key={user.id}>
+              <a href={user.htmlUrl} title={user.login}>
                 <StyledContributorAvatar
-                  src={obj.avatar_url}
+                  src={user.avatarUrl}
                   alt="avatar_fhoto"
                   width={50}
                 />

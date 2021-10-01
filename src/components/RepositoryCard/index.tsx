@@ -1,22 +1,27 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { StyledMain } from './styled';
+
+import { setContributorsThunk, setRepositoryThunk } from './thunks';
+import { setRepositoryNameAC } from './actions';
+import { useParams } from 'react-router-dom';
 
 import { CardHeader } from './CardHeader/CardHeader';
 import { UserInfo } from './UserInfo/UserInfo';
 import { Languages } from './Languages/Languages';
 import { Contributors } from './Contributors/Contributors';
 
-import { setRepositoryThunk } from './thunks';
-
 export const RepositoryCard: React.FC = () => {
   const dispatch = useDispatch();
-  const {
-    userPageReducer: { repositoryName }
-  }: any = useSelector((store) => store);
+
+  // @ts-ignore
+  const { idUser, idRepository } = useParams();
+  const repositoryName = `${idUser}/${idRepository}`;
 
   React.useEffect(() => {
+    dispatch(setRepositoryNameAC(repositoryName));
     dispatch(setRepositoryThunk(repositoryName));
+    dispatch(setContributorsThunk(repositoryName));
   }, [dispatch, repositoryName]);
 
   return (

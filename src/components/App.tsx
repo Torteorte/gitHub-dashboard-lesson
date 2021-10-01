@@ -20,7 +20,7 @@ export const App: React.FC = () => {
           <Route path={ROUTES.allRepos}>
             <AllRepositories />
           </Route>
-          <Route path={ROUTES.reposCard}>
+          <Route path="/repository/:idUser/:idRepository">
             <RepositoryCard />
           </Route>
         </Switch>
