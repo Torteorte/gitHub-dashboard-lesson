@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { StyledLeftContainer, StyledUserName } from './styled';
-import { setRepositoryNameAC } from '../../../../redux/UserPage/actions';
+import { setRepositoryNameAC } from '../../../RepositoryCard/actions';
 
 import { LinkToCard } from './LinkToCard/LinkToCard';
 

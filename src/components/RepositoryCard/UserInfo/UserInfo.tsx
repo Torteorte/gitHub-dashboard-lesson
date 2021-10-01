@@ -1,17 +1,22 @@
 import React from 'react';
-
-import defaultImg from '../../../assets/default-git-hub-img.png';
-import { UserContainer, StyledParagraphUser, StyledUser } from './styled';
 import { useSelector } from 'react-redux';
+import defaultImg from '../../../assets/default-git-hub-img.png';
+import {
+  UserContainer,
+  StyledParagraphUser,
+  StyledUserAvatar,
+  StyledUserContainer,
+  StyledUserName
+} from './styled';
 
-const UserInfo: React.FC = () => {
+export const UserInfo: React.FC = () => {
   const {
     userPageReducer: { repositoryInfo }
   }: any = useSelector((store) => store);
 
   return (
     <UserContainer>
-      <StyledUser>
+      <StyledUserContainer>
         <a
           href={
             !repositoryInfo.owner
@@ -19,7 +24,7 @@ const UserInfo: React.FC = () => {
               : repositoryInfo.owner.html_url
           }
         >
-          <img
+          <StyledUserAvatar
             src={
               !repositoryInfo.owner
                 ? defaultImg
@@ -28,7 +33,7 @@ const UserInfo: React.FC = () => {
             alt="author-avatar"
           />
         </a>
-        <p>
+        <StyledUserName>
           Author:{' '}
           {!repositoryInfo.owner ? (
             `Github User`
@@ -37,11 +42,9 @@ const UserInfo: React.FC = () => {
               {repositoryInfo.owner.login}
             </a>
           )}
-        </p>
-      </StyledUser>
+        </StyledUserName>
+      </StyledUserContainer>
       <StyledParagraphUser>{repositoryInfo.description}</StyledParagraphUser>
     </UserContainer>
   );
 };
-
-export default UserInfo;

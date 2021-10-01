@@ -22,7 +22,11 @@ export const setRepositoryThunk =
       `https://api.github.com/repos/${repositoryName}/commits`
     );
 
-    dispatch(repositoryCommitsAC(responseCommits.data));
+    dispatch(
+      repositoryCommitsAC(
+        responseCommits.data[0].commit.author.date.slice(0, 10)
+      )
+    );
 
     const responseLanguage = await axios.get(
       `https://api.github.com/repos/${repositoryName}/languages`

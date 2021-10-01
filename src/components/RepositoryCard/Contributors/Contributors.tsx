@@ -1,31 +1,39 @@
 import React from 'react';
 
-import { StyledContributors } from './styled';
+import {
+  StyledContributorAvatar,
+  StyledContributorItem,
+  StyledContributors,
+  StyledContributorsList,
+  StyledTitle
+} from './styled';
 import { useSelector } from 'react-redux';
 
-const Contributors: React.FC = () => {
+export const Contributors: React.FC = () => {
   const {
     userPageReducer: { repositoryContributors, isLoaded }
   }: any = useSelector((store) => store);
 
   return (
     <StyledContributors>
-      <h3>Main contributors:</h3>
-      <ul>
+      <StyledTitle>Main contributors:</StyledTitle>
+      <StyledContributorsList>
         {isLoaded ? (
           repositoryContributors.map((obj: any) => (
-            <li key={obj.id}>
+            <StyledContributorItem key={obj.id}>
               <a href={obj.html_url}>
-                <img src={obj.avatar_url} alt="avatar_fhoto" width={50} />
+                <StyledContributorAvatar
+                  src={obj.avatar_url}
+                  alt="avatar_fhoto"
+                  width={50}
+                />
               </a>
-            </li>
+            </StyledContributorItem>
           ))
         ) : (
-          <li>loading...</li>
+          <StyledContributorItem>loading...</StyledContributorItem>
         )}
-      </ul>
+      </StyledContributorsList>
     </StyledContributors>
   );
 };
-
-export default Contributors;

@@ -6,27 +6,30 @@ export const StyledContributors = styled.ul`
   flex-direction: row;
   margin: 10px 20px;
   align-items: center;
+  padding: 0;
+`;
 
-  h3 {
-    font-size: 16px;
-    font-weight: 500;
-    width: 150px;
-    text-align: left;
-    margin-left: 5px;
-  }
+export const StyledTitle = styled.h3`
+  font-size: 16px;
+  font-weight: 500;
+  width: 150px;
+  text-align: left;
+  margin-left: 5px;
+`;
 
-  ul {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+export const StyledContributorsList = styled.ul`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0;
+`;
 
-    li {
-      margin-top: 10px;
-      margin-left: 45px;
-    }
-  }
+export const StyledContributorItem = styled.li`
+  margin-top: 10px;
+  margin-left: 45px;
+  list-style: none;
+`;
 
-  img {
-    border-radius: 50%;
-  }
+export const StyledContributorAvatar = styled.img`
+  border-radius: 50%;
 `;

@@ -17,28 +17,3 @@ export const StyledMain = styled.main`
     color: #57606a;
   }
 `;
-
-export const StyledContributors = styled.ul`
-  display: flex;
-  flex-direction: row;
-  margin: 10px 20px;
-  align-items: center;
-
-  h3 {
-    font-size: 16px;
-    font-weight: 500;
-  }
-
-  ul {
-    display: flex;
-    flex-direction: row;
-
-    li {
-      margin-left: 10px;
-    }
-  }
-
-  img {
-    border-radius: 50%;
-  }
-`;

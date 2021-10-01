@@ -12,11 +12,8 @@ import {
   getPageAC,
   setFullNamesListAC,
   setListKeysAC
-} from '../../redux/AllRepositoriesPage/actions';
-import {
-  setCommitsThunk,
-  setRepositoriesThunk
-} from '../../redux/AllRepositoriesPage/thunks';
+} from './actions';
+import { setCommitsThunk, setRepositoriesThunk } from './thunks';
 
 export const AllRepositories: React.FC = () => {
   const dispatch = useDispatch();

@@ -5,8 +5,8 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 
 import { ROUTES } from '../common/routes/routes';
 import { Header } from './Header/Header';
-import { AllRepositories } from './AllRepositoriesPage/AllRepositories';
-import RepositoryCard from './RepositoryCard/RepositoryCard';
+import { AllRepositories } from './AllRepositories';
+import { RepositoryCard } from './RepositoryCard';
 
 export const App: React.FC = () => {
   return (

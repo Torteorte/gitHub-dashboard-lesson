@@ -10,7 +10,7 @@ import { AnyAction } from 'redux';
 
 const initialState = {
   // userName: '996icu', // имя юзера в названии репозитория до слеша
-  repositoryName: '996icu/996.ICU',
+  repositoryName: localStorage.getItem('setName') || '996icu/996.ICU',
   repositoryInfo: {},
   repositoryCommits: {},
   repositoryLanguages: {},
@@ -52,9 +52,10 @@ const userPageReducer = (state = initialState, action: AnyAction) => {
       };
 
     case USER_CARD_PAGE_SET_REPOSITORY_NAME:
+      localStorage.setItem('setName', action.payload);
       return {
         ...state,
-        repositoryName: action.payload
+        repositoryName: localStorage.getItem('setName')
       };
 
     default:

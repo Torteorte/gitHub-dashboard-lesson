@@ -1,23 +1,25 @@
 import React from 'react';
-
-import { StyledLanguages } from './styled';
 import { useSelector } from 'react-redux';
+import {
+  StyledLanguageItem,
+  StyledLanguages,
+  StyledListLanguages,
+  StyledTitle
+} from './styled';
 
-const Languages: React.FC = () => {
+export const Languages: React.FC = () => {
   const {
     userPageReducer: { repositoryLanguages }
   }: any = useSelector((store) => store);
 
   const languages = Object.keys(repositoryLanguages).map((obj: any) => (
-    <li key={obj}>{obj}</li>
+    <StyledLanguageItem key={obj}>{obj} |</StyledLanguageItem>
   ));
 
   return (
     <StyledLanguages>
-      <h3>Used languages:</h3>
-      <ul>{languages}</ul>
+      <StyledTitle>Used languages:</StyledTitle>
+      <StyledListLanguages>{languages}</StyledListLanguages>
     </StyledLanguages>
   );
 };
-
-export default Languages;
