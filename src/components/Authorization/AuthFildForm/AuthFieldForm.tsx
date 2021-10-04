@@ -9,18 +9,13 @@ import {
 } from './styled';
 import { Formik } from 'formik';
 
-// interface Values {
-//   email: string;
-//   password: string;
-// }
-
 interface props {
   handlerLogin: (isAuth: boolean) => void;
 }
 
 export const AuthFieldForm: React.FC<props> = ({ handlerLogin }) => {
   const login = () => {
-    const value = false;
+    const value = true;
     handlerLogin(value);
   };
 

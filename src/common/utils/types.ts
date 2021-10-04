@@ -1,7 +1,3 @@
-import { Route } from 'react-router-dom';
-import { PageNotFound } from '../../components/PageNotFound/PageNotFound';
-import React from 'react';
-
 export interface IRepository {
   name: string;
   full_name: string;
@@ -23,6 +19,3 @@ export interface IUser {
   stars: string | number;
   description: string;
 }
-
-// {/* @ts-ignore*/}
-// <Route path="*" component={PageNotFound} status={404} />

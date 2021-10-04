@@ -16,8 +16,8 @@ export const App: React.FC = () => {
     <StyledAppContainer>
       <BrowserRouter>
         <Header />
-        <Route exact path="/repository">
-          <Redirect from="/repository" to={ROUTES.allRepos} />
+        <Route exact path="/">
+          <Redirect from="/" to={ROUTES.allRepos} />
         </Route>
         <Switch>
           <Route exact path={ROUTES.allRepos}>

@@ -12,7 +12,7 @@ export const StyledLinkToUserPage = styled(NavLink)`
   color: slategrey;
 `;
 
-export const StyledButtonLogout = styled.button`
+export const StyledButtonLogout = styled(NavLink)`
   font-size: 18px;
   padding: 10px 15px;
   text-align: left;

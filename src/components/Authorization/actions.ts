@@ -17,16 +17,16 @@ export const loginUserAC = (
 });
 
 export const logoutUserAC = (
-  // id: string,
-  // login: string,
-  // email: string,
+  id: string,
+  login: string,
+  email: string,
   isAuth: boolean
 ): AnyAction => ({
   type: LOGOUT_USER,
   payload: {
-    // id,
-    // login,
-    // email,
+    id,
+    login,
+    email,
     isAuth
   }
 });

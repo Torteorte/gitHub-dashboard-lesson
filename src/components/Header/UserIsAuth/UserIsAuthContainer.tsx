@@ -4,15 +4,24 @@ import {
   StyledButtonLogout,
   StyledLinkToUserPage
 } from './styled';
+import { ROUTES } from '../../../common/routes/routes';
 
 interface props {
-  handlerLogout: (isAuth: boolean) => void;
+  handlerLogout: (
+    id: string,
+    name: string,
+    email: string,
+    isAuth: boolean
+  ) => void;
 }
 
 export const UserIsAuthContainer: React.FC<props> = ({ handlerLogout }) => {
   const logout = () => {
-    const value = false;
-    handlerLogout(value);
+    const id = '';
+    const name = '';
+    const email = '';
+    const auth = false;
+    handlerLogout(id, name, email, auth);
   };
 
   return (
@@ -20,7 +29,7 @@ export const UserIsAuthContainer: React.FC<props> = ({ handlerLogout }) => {
       <StyledLinkToUserPage title={`Login page`} to="/userPage">
         UserPage
       </StyledLinkToUserPage>
-      <StyledButtonLogout title={`Logout`} onClick={logout}>
+      <StyledButtonLogout title={`Logout`} onClick={logout} to={ROUTES.login}>
         Logout
       </StyledButtonLogout>
     </StyledContainer>

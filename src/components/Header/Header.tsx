@@ -16,8 +16,13 @@ export const Header: React.FC = () => {
     authReducer: { isAuth }
   }: RootStateOrAny = useSelector((store) => store);
 
-  const handlerLogout = (isAuth: boolean) => {
-    dispatch(logoutUserAC(isAuth));
+  const handlerLogout = (
+    id: string,
+    name: string,
+    email: string,
+    isAuth: boolean
+  ) => {
+    dispatch(logoutUserAC(id, name, email, isAuth));
   };
 
   return (

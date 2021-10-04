@@ -17,6 +17,7 @@ export const Authorization: React.FC = () => {
   };
 
   if (isAuth) {
+    // return <Redirect to={ROUTES.userPage} />;
     return <Redirect to={ROUTES.allRepos} />;
   }
 
