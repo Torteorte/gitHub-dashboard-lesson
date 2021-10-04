@@ -11,7 +11,10 @@ interface props {
 
 export const LinkToCard: React.FC<props> = ({ repositoryName }) => {
   return (
-    <StyledNavLink title={`github.com/${repositoryName}`} to={repositoryName}>
+    <StyledNavLink
+      title={`github.com/${repositoryName}`}
+      to={`/card/${repositoryName}`}
+    >
       <StyledRepositoryIcon
         aria-hidden="true"
         height="16"

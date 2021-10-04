@@ -10,24 +10,32 @@ import { Dispatch } from 'redux';
 import { IContributor, IUser } from '../../common/utils/types';
 
 export const setRepositoryThunk =
-  (repositoryName: string) =>
-  async (dispatch: Dispatch): Promise<void> => {
+  (repositoryName: string, setErrorStatus: any) =>
+  async (dispatch: Dispatch) => {
     dispatch(setLoaded(false));
-    const responseUser = await axios.get(
-      `https://api.github.com/repos/${repositoryName}`
-    );
-    const userData = responseUser.data;
-    const contributeItem: IUser = {
-      userName: userData.owner.login,
-      reposName: userData.name,
-      htmlUrl: userData.html_url,
-      avatarUrl: userData.owner.avatar_url,
-      stars: userData.stargazers_count,
-      description: userData.description
-    };
+    await axios
+      .get(`https://api.github.com/repos/${repositoryName}`)
+      .then((responseUser) => {
+        const userData = responseUser.data;
+        const contributeItem: IUser = {
+          userName: userData.owner.login,
+          reposName: userData.name,
+          htmlUrl: userData.html_url,
+          avatarUrl: userData.owner.avatar_url,
+          stars: userData.stargazers_count,
+          description: userData.description
+        };
+        dispatch(repositoryInfoAC(contributeItem));
+      })
+      .catch(function (error) {
+        if (error.response.status) {
+          setErrorStatus(true);
+        }
+      });
+  };
 
-    dispatch(repositoryInfoAC(contributeItem));
-
+export const setResponseCommitsThunk =
+  (repositoryName: string) => async (dispatch: Dispatch) => {
     const responseCommits = await axios.get(
       `https://api.github.com/repos/${repositoryName}/commits`
     );
@@ -36,7 +44,10 @@ export const setRepositoryThunk =
         responseCommits.data[0].commit.author.date.slice(0, 10)
       )
     );
+  };
 
+export const setResponseLanguageThunk =
+  (repositoryName: string) => async (dispatch: Dispatch) => {
     const responseLanguage = await axios.get(
       `https://api.github.com/repos/${repositoryName}/languages`
     );
@@ -44,8 +55,7 @@ export const setRepositoryThunk =
   };
 
 export const setContributorsThunk =
-  (repositoryName: string) =>
-  async (dispatch: Dispatch): Promise<void> => {
+  (repositoryName: string) => async (dispatch: Dispatch) => {
     const responseContributes = await axios.get(
       `https://api.github.com/repos/${repositoryName}/contributors`
     );

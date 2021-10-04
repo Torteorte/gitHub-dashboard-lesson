@@ -18,13 +18,14 @@ export const StyledTitle = styled.h3`
 export const StyledListLanguages = styled.ul`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   margin-left: 35px;
   margin-bottom: 0;
   padding: 0;
 `;
 
 export const StyledLanguageItem = styled.li`
-  margin-left: 7px;
+  margin-left: 10px;
   font-size: 16px;
   list-style: none;
 `;
