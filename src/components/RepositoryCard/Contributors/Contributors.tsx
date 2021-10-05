@@ -10,7 +10,7 @@ import {
 
 export const Contributors: React.FC = () => {
   const {
-    userPageReducer: { repositoryContributors }
+    userCardPageReducer: { repositoryContributors }
   }: RootStateOrAny = useSelector((store) => store);
 
   return (

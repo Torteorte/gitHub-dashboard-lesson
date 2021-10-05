@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { StyledMain } from './styled';
-
+import { setRepositoryNameAC } from './actions';
+import { useParams } from 'react-router-dom';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import {
   setContributorsThunk,
   setRepositoryThunk,
   setResponseCommitsThunk,
   setResponseLanguageThunk
 } from './thunks';
-import { setRepositoryNameAC } from './actions';
-import { useParams } from 'react-router-dom';
 
 import { CardHeader } from './CardHeader/CardHeader';
 import { UserInfo } from './UserInfo/UserInfo';
@@ -21,7 +20,7 @@ export const RepositoryCard: React.FC = () => {
   const dispatch = useDispatch();
   const [errorStatus, setErrorStatus] = useState(false);
   const {
-    userPageReducer: { repositoryInfo, isLoaded }
+    userCardPageReducer: { repositoryInfo, isLoaded }
   }: RootStateOrAny = useSelector((store) => store);
 
   // @ts-ignore

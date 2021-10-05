@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-export const StyledContainer = styled.div`
-  margin-left: auto;
-`;
-
-export const StyledLinkToUserPage = styled(NavLink)`
+export const StyledLink = styled(NavLink)`
   font-size: 18px;
   padding: 15px;
   text-align: left;

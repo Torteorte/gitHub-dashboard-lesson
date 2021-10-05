@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
 
 export const StyledHeader = styled.header`
   margin: 0;
@@ -26,25 +25,6 @@ export const StyledTitle = styled.h1`
   color: slategrey;
 `;
 
-export const StyledLinkToCard = styled(NavLink)`
-  margin: auto;
-  font-size: 26px;
-  padding: 0px 10px;
-  text-align: center;
-  color: slategrey;
-  border: 1px solid lightblue;
-  border-radius: 10px;
-  background-color: #eaf2fa;
-
-  :hover {
-    background-color: #e6eef6;
-  }
-`;
-
-export const StyledLinkToLogin = styled(NavLink)`
+export const StyledContainer = styled.div`
   margin-left: auto;
-  font-size: 30px;
-  margin-right: 20px;
-  text-align: left;
-  color: slategrey;
 `;

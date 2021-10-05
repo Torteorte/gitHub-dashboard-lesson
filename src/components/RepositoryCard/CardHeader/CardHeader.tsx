@@ -4,7 +4,7 @@ import { StyledContainerStats, StyledHeader, StyledStarIcon } from './styled';
 
 export const CardHeader: React.FC = () => {
   const {
-    userPageReducer: { repositoryInfo, repositoryCommits, isLoaded }
+    userCardPageReducer: { repositoryInfo, repositoryCommits, isLoaded }
   }: RootStateOrAny = useSelector((store) => store);
 
   return (

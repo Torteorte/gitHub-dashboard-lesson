@@ -12,10 +12,10 @@ import { IContributor, IUser } from '../../common/utils/types';
 export const setRepositoryThunk =
   (repositoryName: string, setErrorStatus: any) =>
   async (dispatch: Dispatch) => {
-    dispatch(setLoaded(false));
     await axios
       .get(`https://api.github.com/repos/${repositoryName}`)
       .then((responseUser) => {
+        dispatch(setLoaded(false));
         const userData = responseUser.data;
         const contributeItem: IUser = {
           userName: userData.owner.login,
@@ -29,6 +29,7 @@ export const setRepositoryThunk =
       })
       .catch(function (error) {
         if (error.response.status) {
+          dispatch(setLoaded(true));
           setErrorStatus(true);
         }
       });
@@ -56,6 +57,7 @@ export const setResponseLanguageThunk =
 
 export const setContributorsThunk =
   (repositoryName: string) => async (dispatch: Dispatch) => {
+    dispatch(setLoaded(false));
     const responseContributes = await axios.get(
       `https://api.github.com/repos/${repositoryName}/contributors`
     );

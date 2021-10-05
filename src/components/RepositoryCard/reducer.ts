@@ -18,7 +18,7 @@ const initialState = {
   isLoaded: false
 };
 
-const userPageReducer = (state = initialState, action: AnyAction) => {
+const userCardPageReducer = (state = initialState, action: AnyAction) => {
   switch (action.type) {
     case SET_REPOSITORY_INFO:
       return {
@@ -63,4 +63,4 @@ const userPageReducer = (state = initialState, action: AnyAction) => {
   }
 };
 
-export default userPageReducer;
+export default userCardPageReducer;

@@ -1,6 +1,5 @@
 import React from 'react';
 import { RootStateOrAny, useSelector } from 'react-redux';
-import defaultImg from '../../../assets/default-git-hub-img.png';
 import {
   UserContainer,
   StyledParagraphUser,
@@ -9,9 +8,11 @@ import {
   StyledUserName
 } from './styled';
 
+import defaultImg from '../../../assets/default-git-hub-img.png';
+
 export const UserInfo: React.FC = () => {
   const {
-    userPageReducer: { repositoryInfo, isLoaded }
+    userCardPageReducer: { repositoryInfo, isLoaded }
   }: RootStateOrAny = useSelector((store) => store);
 
   return (

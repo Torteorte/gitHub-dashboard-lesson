@@ -9,7 +9,7 @@ import {
 
 export const Languages: React.FC = () => {
   const {
-    userPageReducer: { repositoryLanguages }
+    userCardPageReducer: { repositoryLanguages }
   }: RootStateOrAny = useSelector((store) => store);
 
   const languages = Object.keys(repositoryLanguages).map((obj: string) => (

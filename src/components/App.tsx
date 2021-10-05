@@ -7,9 +7,12 @@ import { ROUTES } from '../common/routes/routes';
 import { Header } from './Header/Header';
 import { AllRepositories } from './AllRepositories';
 import { RepositoryCard } from './RepositoryCard';
-import { Authorization } from './Authorization';
+import { Login } from './Login';
 import { PageNotFound } from './PageNotFound/PageNotFound';
-import { UserPage } from './UserPage/UserPage';
+import { ProfilePage } from './ProfilePage/ProfilePage';
+import { Registration } from './Registration/Registration';
+import { Users } from './Users/Users';
+import { UserPage } from './Users/UserPage/UserPage';
 
 export const App: React.FC = () => {
   return (
@@ -24,12 +27,21 @@ export const App: React.FC = () => {
             <AllRepositories />
           </Route>
           <Route exact path={ROUTES.login}>
-            <Authorization />
+            <Login />
           </Route>
-          <Route exact path="/userPage">
+          <Route exact path={ROUTES.registration}>
+            <Registration />
+          </Route>
+          <Route exact path={ROUTES.profilePage}>
+            <ProfilePage />
+          </Route>
+          <Route exact path={ROUTES.users}>
+            <Users />
+          </Route>
+          <Route exact path={ROUTES.userPage}>
             <UserPage />
           </Route>
-          <Route exact path="/card/:idUser/:idRepository">
+          <Route exact path={ROUTES.repositoryCard}>
             <RepositoryCard />
           </Route>
           <Route>

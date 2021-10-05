@@ -1,33 +1,55 @@
 import React from 'react';
 import {
   StyledButton,
-  StyledContainer,
   StyledForm,
   StyledInput,
   StyledLabel,
   StyledTitle
 } from './styled';
-import { Formik } from 'formik';
+import { Formik, FormikHelpers } from 'formik';
+
+interface Values {
+  email: string;
+  password: string;
+}
+
+const userTrain = {
+  id: '545',
+  login: 'alex',
+  email: 'mailemail@mail.com',
+  password: 'pes'
+};
 
 interface props {
-  handlerLogin: (isAuth: boolean) => void;
+  handlerLogin: (
+    id: string,
+    name: string,
+    email: string,
+    isAuth: boolean
+  ) => void;
 }
 
 export const AuthFieldForm: React.FC<props> = ({ handlerLogin }) => {
-  const login = () => {
-    const value = true;
-    handlerLogin(value);
-  };
-
   return (
-    <StyledContainer>
+    <>
       <StyledTitle>Sign in</StyledTitle>
       <Formik
         initialValues={{
           email: '',
           password: ''
         }}
-        onSubmit={login}
+        onSubmit={(
+          values: Values,
+          { setSubmitting }: FormikHelpers<Values>
+        ) => {
+          if (
+            userTrain.email === values.email &&
+            userTrain.password === values.password
+          ) {
+            console.log(123);
+            handlerLogin(userTrain.id, userTrain.login, userTrain.email, true);
+          }
+        }}
       >
         <StyledForm>
           <StyledLabel htmlFor="email">Email:</StyledLabel>
@@ -46,9 +68,9 @@ export const AuthFieldForm: React.FC<props> = ({ handlerLogin }) => {
             type="password"
           />
 
-          <StyledButton type="submit">Submit</StyledButton>
+          <StyledButton type="submit">Login</StyledButton>
         </StyledForm>
       </Formik>
-    </StyledContainer>
+    </>
   );
 };
