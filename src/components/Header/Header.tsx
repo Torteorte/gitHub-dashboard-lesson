@@ -3,18 +3,18 @@ import { StyledHeader, StyledTitle, StyledContainer } from './styled';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 
 import { UserIsAuthContainer } from './HeaderUserContainer/UserIsAuthContainer';
-import { logoutUserAC } from '../Login/actions';
+import { logoutUserAC } from '../User/actions';
 import { LoginAndRegistration } from './HeaderUserContainer/LoginAndRegistration';
 import { MainLinks } from './MainLinks/MainLinks';
 
 export const Header: React.FC = () => {
   const dispatch = useDispatch();
   const {
-    authReducer: { isAuth }
+    userReducer: { token }
   }: RootStateOrAny = useSelector((store) => store);
 
-  const handlerLogout = (isAuth: boolean) => {
-    dispatch(logoutUserAC(isAuth));
+  const handlerLogout = () => {
+    dispatch(logoutUserAC());
   };
 
   return (
@@ -22,7 +22,7 @@ export const Header: React.FC = () => {
       <StyledTitle>GitHub Dashboard</StyledTitle>
       <MainLinks />
       <StyledContainer>
-        {!isAuth ? (
+        {!token ? (
           <LoginAndRegistration />
         ) : (
           <UserIsAuthContainer handlerLogout={handlerLogout} />

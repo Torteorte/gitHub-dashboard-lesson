@@ -22,7 +22,7 @@ export const StyledLabel = styled.label`
 export const StyledInput = styled(Field)`
   display: block;
   width: 100%;
-  margin: 0 auto 20px;
+  margin: 0 auto 25px;
   padding: 5px 5px 5px 10px;
   text-align: left;
   font-size: 14px;
@@ -34,6 +34,10 @@ export const StyledInput = styled(Field)`
   :hover {
     border-color: #4aa3dc;
     background-color: #f8fbff;
+  }
+
+  &.errorInput {
+    border: 1px solid red;
   }
 `;
 
@@ -51,4 +55,17 @@ export const StyledButton = styled.button`
     border-color: #4aa3dc;
     background-color: #e5f2fd;
   }
+`;
+
+export const StyledInputContainer = styled.div`
+  position: relative;
+  margin-bottom: 20px;
+`;
+
+export const StyledError = styled.div`
+  color: red;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -25px;
 `;

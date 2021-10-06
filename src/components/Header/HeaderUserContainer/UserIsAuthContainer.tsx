@@ -4,22 +4,21 @@ import { ROUTES } from '../../../common/routes/routes';
 import { RootStateOrAny, useSelector } from 'react-redux';
 
 interface props {
-  handlerLogout: (isAuth: boolean) => void;
+  handlerLogout: () => void;
 }
 
 export const UserIsAuthContainer: React.FC<props> = ({ handlerLogout }) => {
   const {
-    authReducer: { login }
+    userReducer: { login }
   }: RootStateOrAny = useSelector((store) => store);
 
   const logout = () => {
-    const auth = false;
-    handlerLogout(auth);
+    handlerLogout();
   };
 
   return (
     <>
-      <StyledLink title={`Login page`} to={`/profile/${login}`}>
+      <StyledLink title={`Login page`} to={`/user/${login}`}>
         Profile Page
       </StyledLink>
       <StyledButtonLogout title={`Logout`} onClick={logout} to={ROUTES.login}>

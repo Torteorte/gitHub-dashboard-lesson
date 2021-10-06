@@ -7,10 +7,10 @@ import { ROUTES } from '../common/routes/routes';
 import { Header } from './Header/Header';
 import { AllRepositories } from './AllRepositories';
 import { RepositoryCard } from './RepositoryCard';
-import { Login } from './Login';
+import { Login } from './User/Login/Login';
 import { PageNotFound } from './PageNotFound/PageNotFound';
-import { ProfilePage } from './ProfilePage/ProfilePage';
-import { Registration } from './Registration/Registration';
+import { ProfilePage } from './User/ProfilePage/ProfilePage';
+import { Registration } from './User/Registration/Registration';
 import { Users } from './Users/Users';
 import { UserPage } from './Users/UserPage/UserPage';
 

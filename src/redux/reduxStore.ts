@@ -1,13 +1,13 @@
 import thunkMiddleware from 'redux-thunk';
 import { applyMiddleware, combineReducers, createStore, compose } from 'redux';
-import authReducer from '../components/Login/reducer';
+import userReducer from '../components/User/reducer';
 import userCardPageReducer from '../components/RepositoryCard/reducer';
 import allRepositoriesPageReducer from '../components/AllRepositories/reducer';
 
 const reducers = combineReducers({
   allRepositoriesPageReducer,
   userCardPageReducer,
-  authReducer
+  userReducer: userReducer
 });
 
 declare global {

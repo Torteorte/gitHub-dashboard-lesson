@@ -5,10 +5,21 @@ import {
   StyledUserContainer,
   StyledUserName
 } from './styled';
-import defaultImg from '../../../assets/default-git-hub-img.png';
 import { ROUTES } from '../../../common/routes/routes';
+import { RootStateOrAny, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+
+import defaultImg from '../../../assets/default-git-hub-img.png';
 
 export const UserPage: React.FC = () => {
+  const {
+    authReducer: { isAuth }
+  }: RootStateOrAny = useSelector((store) => store);
+
+  if (!isAuth) {
+    return <Redirect to={ROUTES.login} />;
+  }
+
   return (
     <StyledUserContainer>
       <StyledUserAvatar src={defaultImg} alt="user avatar" />

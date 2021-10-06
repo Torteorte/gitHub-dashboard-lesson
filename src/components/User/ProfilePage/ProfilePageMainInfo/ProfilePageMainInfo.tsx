@@ -6,7 +6,7 @@ import {
   StyledUserIcon
 } from './styled';
 
-import defaultImg from '../../../assets/default-git-hub-img.png';
+import defaultImg from '../../../../assets/default-git-hub-img.png';
 
 export const ProfilePageMainInfo: React.FC = () => {
   return (

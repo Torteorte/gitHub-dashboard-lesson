@@ -3,19 +3,17 @@ import { Radio } from 'antd';
 import { StyledHeader, StyledNavbar, StyledTitle } from './styled';
 
 export const UsersHeader: React.FC = () => {
-  const [size, setSize] = React.useState('username');
+  const [sort, setSort] = React.useState('username');
 
   const handleSizeChange = (e: any) => {
-    setSize(e.target.value);
+    setSort(e.target.value);
   };
-
-  // console.log(size);
 
   return (
     <StyledHeader>
       <StyledTitle>Users</StyledTitle>
       <StyledNavbar>
-        <Radio.Group onChange={handleSizeChange}>
+        <Radio.Group value={sort} onChange={handleSizeChange}>
           <Radio.Button value="username">User name</Radio.Button>
           <Radio.Button value="lastlogin">Last seen</Radio.Button>
           <Radio.Button value="isactive">Online</Radio.Button>

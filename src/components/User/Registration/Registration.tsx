@@ -1,26 +1,26 @@
 import React from 'react';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { ROUTES } from '../../common/routes/routes';
+import { ROUTES } from '../../../common/routes/routes';
 import { StyledContainer } from '../Login/styled';
 
-import { GitHubLogo } from '../../common/components/GithubLogo/GithubLogo';
-import { RegistrationFiledForm } from './Form/RegistrationFiledForm';
+import { GitHubLogo } from '../../../common/components/GithubLogo/GithubLogo';
+import { RegistrationForm } from './RegistrationForm/RegistrationForm';
 
 export const Registration: React.FC = () => {
   const {
-    authReducer: { isAuth }
+    userReducer: { token }
   }: RootStateOrAny = useSelector((store) => store);
 
-  if (isAuth) {
-    return <Redirect to={ROUTES.allRepos} />;
+  if (token) {
+    return <Redirect to={ROUTES.profilePage} />;
   }
 
   return (
     <>
       <GitHubLogo />
       <StyledContainer>
-        <RegistrationFiledForm />
+        <RegistrationForm />
       </StyledContainer>
     </>
   );

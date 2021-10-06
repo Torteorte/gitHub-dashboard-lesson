@@ -1,9 +1,9 @@
 export const ROUTES = {
   allRepos: '/repository/allRepos',
+  repositoryCard: '/card/:idUser/:idRepository',
   login: '/user/login',
   registration: '/user/registration',
-  repositoryCard: '/card/:idUser/:idRepository',
-  profilePage: '/profile/:idMainUser',
+  profilePage: '/user/:idMainUser',
   users: '/users',
   userPage: '/users/:idUser'
 };
